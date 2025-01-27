@@ -1,4 +1,6 @@
 
+using LabKafkaProducer.Configuration;
+
 namespace LabKafkaProducer
 {
     public class Program
@@ -13,6 +15,10 @@ namespace LabKafkaProducer
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            DependencyInjectionServiceConfig.Configure(builder.Services);
+            MapperServiceConfig.Configure(builder.Services);
+            KafkaProducerServiceConfig.Configure(builder.Services, builder.Configuration);
 
             var app = builder.Build();
 
