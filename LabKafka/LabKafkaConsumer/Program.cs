@@ -1,5 +1,7 @@
 
 using LabKafkaConsumer.Configuration;
+using LabKafkaConsumer.Domain;
+using LabKafkaConsumer.Domain.UseCases;
 
 namespace LabKafkaConsumer
 {
@@ -9,9 +11,6 @@ namespace LabKafkaConsumer
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
-            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -33,9 +32,18 @@ namespace LabKafkaConsumer
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.MapGet("api/propostas", async (IRecuperarPropostaUseCase recuperarProposta) =>
+            {
+                var resposta = await recuperarProposta.Execute();
 
-            app.MapControllers();
+                if (resposta.HasError)
+                    return Results.BadRequest(resposta.ErrorMessage);
+
+                if (resposta.Propostas is null || resposta.Propostas.Count == 0)
+                    return Results.NotFound();
+
+                return Results.Ok(resposta.Propostas);
+            });
 
             app.Run();
         }

@@ -1,26 +1,25 @@
-﻿using LabKafkaProducer.Domain.Models;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace LabKafkaProducer.Domain.Dtos
 {
-    public class PropostaOutDto
+    public record PropostaOutDto
     {
         [JsonPropertyName("id")]
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         [JsonPropertyName("validade")]
-        public DateTime Validade { get; set; }
+        public DateTime Validade { get; init; }
 
         [JsonPropertyName("cliente")]
-        public ClienteDto Cliente { get; set; }
+        public ClienteDto Cliente { get; init; }
 
         [JsonPropertyName("oferta")]
-        public OfertaDto Oferta { get; set; }
+        public OfertaDto Oferta { get; init; }
 
         [JsonIgnore]
-        public bool HasError { get; set; } = false;
+        public bool HasError { get; init; } = false;
 
         [JsonIgnore]
-        public string? ErrorMessage { get; set; }
+        public string? ErrorMessage { get; init; }
     }
 }

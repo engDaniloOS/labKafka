@@ -21,11 +21,7 @@ namespace LabKafkaConsumer.Domain
 			{
                 Console.WriteLine($"Erro ao recuperar as propostas: {ex.Message}");
 
-                return new PropostaOutDto
-                {
-                    ErrorMessage = ex.Message,
-                    HasError = true
-                };
+                return new PropostaOutDto(true, ex.Message);
 			}        
         }
     }

@@ -2,15 +2,15 @@
 
 namespace LabKafkaProducer.Domain.Dtos
 {
-    public class ClienteDto
+    public record ClienteDto
     {
         [JsonPropertyName("nome")]
-        public string Nome { get; set; }
+        public string Nome { get; init; }
 
         [JsonPropertyName("cpf")]
-        public string Cpf { get; set; }
+        public string Cpf { get; init; }
 
         [JsonPropertyName("data_nascimento")]
-        public DateTime DataNascimento { get; set; }
+        public DateTime DataNascimento { get; init; }
     }
 }

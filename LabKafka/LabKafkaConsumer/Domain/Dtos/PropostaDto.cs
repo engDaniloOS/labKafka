@@ -2,18 +2,18 @@
 
 namespace LabKafkaConsumer.Domain.Dtos
 {
-    public class PropostaDto
+    public record PropostaDto
     {
         [JsonPropertyName("id")]
-        public Guid Id { get; set; }
+        public Guid Id { get; init; }
 
         [JsonPropertyName("validade")]
-        public DateTime Validade { get; set; }
+        public DateTime Validade { get; init; }
 
         [JsonPropertyName("cliente")]
-        public ClienteDto Cliente { get; set; }
+        public ClienteDto Cliente { get; init; }
 
         [JsonPropertyName("oferta")]
-        public OfertaDto Oferta { get; set; }
+        public OfertaDto Oferta { get; init; }
     }
 }

@@ -1,9 +1,4 @@
 ﻿namespace LabKafkaConsumer.Domain.Dtos
 {
-    public class PropostaOutDto
-    {
-        public bool HasError { get; set; }
-        public string? ErrorMessage { get; set; }
-        public List<PropostaDto>? Propostas { get; set; }
-    }
+    public record PropostaOutDto(bool HasError = false, string? ErrorMessage = null, List<PropostaDto>? Propostas = null);
 }

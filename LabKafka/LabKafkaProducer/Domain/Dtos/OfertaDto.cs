@@ -3,18 +3,18 @@ using System.Text.Json.Serialization;
 
 namespace LabKafkaProducer.Domain.Dtos
 {
-    public class OfertaDto
+    public record OfertaDto
     {
         [JsonPropertyName("codigo_produto")]
-        public Produtos Produto { get; set; }
+        public Produtos Produto { get; init; }
 
         [JsonPropertyName("valor_aprovado")]
-        public double ValorAprovado { get; set; }
+        public double ValorAprovado { get; init; }
 
         [JsonPropertyName("parcelas")]
-        public short QuantidadeParcelas { get; set; }
+        public short QuantidadeParcelas { get; init; }
 
         [JsonPropertyName("data_primeiro_vencimento")]
-        public DateTime VencimentoPrimeiraParcela { get; set; }
+        public DateTime VencimentoPrimeiraParcela { get; init; }
     }
 }
