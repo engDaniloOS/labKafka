@@ -1,0 +1,6 @@
+@LabKafkaConsumer_HostAddress = http://localhost:5185
+
+GET {{LabKafkaConsumer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

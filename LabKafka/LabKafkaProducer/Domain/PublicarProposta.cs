@@ -9,23 +9,20 @@ namespace LabKafkaProducer.Domain
 {
     public class PublicarProposta(IProducer<string, string> producer, IMapper mapper, IConfiguration config) : IPublicarPropostaUseCase
     {
-        private readonly IProducer<string, string> _producer = producer;
-        private readonly IMapper _mapper = mapper;
-
         private const int DIAS_LIMITE_PROPOSTA = 1;
 
         public async Task<PropostaOutDto> Executar(PropostaDto propostaDto)
         {
             try
             {
-                var proposta = _mapper.Map<PropostaDto, Proposta>(propostaDto);
+                var proposta = mapper.Map<PropostaDto, Proposta>(propostaDto);
 
                 proposta.Id = Guid.NewGuid();
                 proposta.Validade = DateTime.UtcNow.AddDays(DIAS_LIMITE_PROPOSTA);
 
                 await PublicarMensagem(config, proposta);
 
-                return _mapper.Map<Proposta, PropostaOutDto>(proposta);
+                return mapper.Map<Proposta, PropostaOutDto>(proposta);
             }
             catch (Exception ex)
             {
@@ -47,7 +44,7 @@ namespace LabKafkaProducer.Domain
 
             var topicName = config.GetSection("Kafka")["TopicName"];
 
-            await _producer.ProduceAsync(topicName, kafkaMessage);
+            await producer.ProduceAsync(topicName, kafkaMessage);
         }
     }
 }

@@ -9,15 +9,12 @@ namespace LabKafkaProducer.Entrypoints.Controllers
     [ApiController]
     public class PropostaController(IPublicarPropostaUseCase publicarUseCase) : ControllerBase
     {
-
-        private readonly IPublicarPropostaUseCase _publicarUseCase = publicarUseCase;
-
         [HttpPost]
         public async Task<IActionResult> PublicarProposta([FromBody]PropostaDto propostaDto)
         {
             var watch = Stopwatch.StartNew();
 
-            var propostaPublicada = await _publicarUseCase.Executar(propostaDto);
+            var propostaPublicada = await publicarUseCase.Executar(propostaDto);
 
             watch.Stop();
 

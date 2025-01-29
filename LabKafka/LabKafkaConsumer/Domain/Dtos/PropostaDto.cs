@@ -1,9 +1,8 @@
-﻿using LabKafkaProducer.Domain.Models;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace LabKafkaProducer.Domain.Dtos
+namespace LabKafkaConsumer.Domain.Dtos
 {
-    public class PropostaOutDto
+    public class PropostaDto
     {
         [JsonPropertyName("id")]
         public Guid Id { get; set; }
@@ -16,11 +15,5 @@ namespace LabKafkaProducer.Domain.Dtos
 
         [JsonPropertyName("oferta")]
         public OfertaDto Oferta { get; set; }
-
-        [JsonIgnore]
-        public bool HasError { get; set; } = false;
-
-        [JsonIgnore]
-        public string? ErrorMessage { get; set; }
     }
 }
